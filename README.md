@@ -49,9 +49,9 @@ Move the database to a cloud service for multi-user support.
 Email: shynkarnikita@gmail.com
 Telegram: @BuenasNo4es
 
-Project Status
+# Project Status
 The project is currently in progress, with ongoing feature enhancements and optimizations.
 
-Authors and Acknowledgment
+# Authors and Acknowledgment
 Nikita Shynkar – Developer
 Thanks to [Foxminded] for the educational support.
