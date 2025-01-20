@@ -1,0 +1,93 @@
+﻿<UserControl x:Class="Foxminded.Curriculum.App.Views.HomePageViews.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Foxminded.Curriculum.App.Views.HomePageViews"
+             xmlns:views="clr-namespace:Foxminded.Curriculum.App.Views.HomePageViews"
+             xmlns:viewmodels="clr-namespace:Foxminded.Curriculum.App.ViewModels.HomeViewModels"
+             xmlns:resources="clr-namespace:Foxminded.Curriculum.App.Resources"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="AliceBlue">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+         <!--Headers--> 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="{x:Static resources:ProgramInterface.CoursesText}" 
+           FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Grid.Column="0" Margin="3"/>
+            <TextBlock Text="{x:Static resources:ProgramInterface.GroupsText}" 
+           FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Grid.Column="1" Margin="3"/>
+            
+            <Button Style="{StaticResource SettingsButtonStyle}"
+                Visibility="{Binding VisibilityGroupSettingsButton}"
+                Grid.Column="1" 
+                Margin="0, 5,-100,5"
+                Command="{Binding NavigateGroupSettingsCommand}"/>
+            
+            <TextBlock Text="{x:Static resources:ProgramInterface.TeacherText}" 
+                       FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Grid.Column="2" Margin="3"/>
+            <Button Style="{StaticResource SettingsButtonStyle}" 
+                Visibility="{Binding VisibilityPersonSettingsButton}"
+                Grid.Column="2" 
+                Margin="0, 5,-100,5"
+                Command="{Binding OpenTeachersSettingsDialogCommand}"/>
+        </Grid>
+
+        <!-- Middle part with all data -->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                <views:CoursesView DataContext="{Binding CoursesViewModel}" />
+            </Border>
+
+            <Border BorderBrush="Black" BorderThickness="1" Margin="5" Grid.Column="1">
+                <views:GroupsView DataContext="{Binding GroupsViewModel}" />
+            </Border>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="3*"/>
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="Black" BorderThickness="1" Margin="5">
+                    <views:TeachersView DataContext="{Binding TeachersViewModel}" />
+                </Border>
+
+                <TextBlock Text="{x:Static resources:ProgramInterface.StudentsText}" 
+                           FontSize="15" FontWeight="SemiBold" HorizontalAlignment="Center" Grid.Row="1" Margin="3"/>
+                <Button Style="{StaticResource SettingsButtonStyle}" 
+                    Visibility="{Binding VisibilityPersonSettingsButton}"
+                    Grid.Row="1" 
+                    Margin="0, 5,-100,5"
+                    Command="{Binding OpenStudentsSettingsDialogCommand}"/>
+                
+                <Border BorderBrush="Black" BorderThickness="1" Margin="5" Grid.Row="2">
+                    <views:StudentsView DataContext="{Binding StudentsViewModel}" />
+                </Border>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="2" VerticalAlignment="Bottom">
+            <TextBlock Text="{x:Static resources:ProgramInterface.FooterText}" 
+                       FontSize="12" HorizontalAlignment="Center"/>
+        </Grid>
+    </Grid>
+</UserControl>
